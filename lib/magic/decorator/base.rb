@@ -10,6 +10,8 @@ module Magic
 			class << self
 				def name_for(object_class) = "#{object_class}Decorator"
 			end
+
+			def decorated? = true
 		end
 	end
 end

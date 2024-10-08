@@ -2,6 +2,8 @@ module Magic
 	module Decorator
 		class Base
 			extend Lookup
+
+			def decorated?: -> bool
 		end
 	end
 end

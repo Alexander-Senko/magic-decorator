@@ -1,0 +1,13 @@
+module Magic
+	module Decoratable
+		def decorate:  ->  Decorator?
+		def decorate!: ->  Decorator
+		def decorated: -> (Decorator | self)
+
+		def decorated?: -> bool
+
+		private
+
+		def decorator: -> Class?
+	end
+end

@@ -5,6 +5,10 @@ require 'magic/lookup'
 require_relative 'decorator/version'
 
 module Magic
+	autoload :Decoratable, 'magic/decoratable'
+
+	Object.include Decoratable
+
 	module Decorator
 		autoload :Base, 'magic/decorator/base'
 
