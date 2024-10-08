@@ -18,3 +18,5 @@ module Magic
 		def name_for(...) = Base.name_for(...)
 	end
 end
+
+require 'enumerable_decorator'

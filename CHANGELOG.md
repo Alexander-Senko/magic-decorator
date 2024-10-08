@@ -12,6 +12,12 @@
 
 - `Magic::Decorator::Base.undecorated` to exclude methods from being decorated automagically.
 
+#### Default decorators
+
+- `EnumerableDecorator` to decorate `Enumerable`s.
+	- enables _splat_ operator: `*decorated` ,
+	- enables _double-splat_ operator: `**decorated`,
+	- enumerating methods yield decorated items.
 
 ## [0.1.0] — 2024-10-13
 

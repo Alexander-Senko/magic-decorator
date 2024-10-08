@@ -1,0 +1,9 @@
+class EnumerableDecorator[unchecked out Element]
+	include _Each[Element, void]
+	include Enumerable[Element]
+
+	def to_ary: () -> ::Array[Element]
+
+	def to_hash: () -> ::Hash[untyped, untyped]
+			| [T, U] () { (Element) -> [T, U] } -> ::Hash[T, U]
+end

@@ -105,6 +105,33 @@ powered by [Magic Lookup](
 For example, `MyNamespace::MyModel.new.decorate` looks for `MyNamespace::MyModelDecorator` first.
 When missing, it further looks for decorators for its ancestor classes, up to `ObjectDecorator`.
 
+### Default decorators
+
+#### `EnumerableDecorator`
+
+It automagically decorates all its decoratable items.
+
+```ruby
+[1, [2], { 3 => 4 }, '5'].decorated
+    .map &:decorated? # => [false, true, true, false]
+
+{ 1 => 2, [3] => [4] }.decorated.keys
+    .map &:decorated? # => [false, true]
+{ 1 => 2, [3] => [4] }.decorated.values
+    .map &:decorated? # => [false, true]
+
+{ 1 => 2, [3] => [4] }.decorated[1]
+    .decorated? # => false
+{ 1 => 2, [3] => [4] }.decorated[[3]]
+    .decorated? # => true
+```
+
+##### Side effects for decorated collections
+
+- enables _splat_ operator: `*decorated` ,
+- enables _double-splat_ operator: `**decorated`,
+- enumerating methods yield decorated items.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

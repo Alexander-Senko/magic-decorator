@@ -10,9 +10,6 @@ module Magic
 
 			def random_array = 2.times.map { rand }
 
-			before { stub_const 'ArrayDecorator', described_class }
-			after  { Decorator::Base.clear_memery_cache! }
-
 			describe 'method decoration' do
 				shared_context '#random_method' do
 					include_context :method
