@@ -54,13 +54,26 @@ When no decorator is found,
 One can test for the object is actually decorated with `#decorated?`.
 
 ```ruby
-'with no decorator for String'.decorated.decorated? # => false
-['with a decorator for Array'].decorated.decorated? # => true
+'with no decorator for String'.decorated
+    .decorated? # => false
+['with a decorator for Array'].decorated
+    .decorated? # => true
 ```
 
 #### Magic
 
 `Decoratable` is mixed into `Object` by default. That means that effectively any object is `Decoratable`.
+
+### Decoration expansion
+
+For any method called on a decorated object, both its result and `yield`ed arguments get decorated.
+
+```ruby
+'with no decorator for String'.decorated.chars
+    .decorated? # => false
+['with a decorator for Array'].decorated.map(&:chars).first.grep(/\S/).group_by(&:upcase).transform_values(&:size).sort_by(&:last).reverse.first(5).map(&:first)
+    .decorated? # => true
+```
 
 ### Decorator class inference
 

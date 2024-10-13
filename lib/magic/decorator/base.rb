@@ -12,6 +12,14 @@ module Magic
 			end
 
 			def decorated? = true
+
+			def method_missing(...)
+				if block_given?
+					super { |*args| yield *args.map(&:decorated) }
+				else
+					super
+				end.decorated
+			end
 		end
 	end
 end
