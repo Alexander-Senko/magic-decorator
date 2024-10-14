@@ -47,9 +47,9 @@ person.name # => "John Smith"
 This module adds three methods to decorate an object.
 Decorator class is being inferred automatically.
 When no decorator is found,
-* `#decorate`  returns `nil`,
-* `#decorate!` raises `Magic::Lookup::Error`,
-* `#decorated` returns the original object.
+- `#decorate`  returns `nil`,
+- `#decorate!` raises `Magic::Lookup::Error`,
+- `#decorated` returns the original object.
 
 One can test for the object is actually decorated with `#decorated?`.
 
@@ -60,9 +60,11 @@ One can test for the object is actually decorated with `#decorated?`.
     .decorated? # => true
 ```
 
-#### Magic
+## Magic
 
-`Decoratable` is mixed into `Object` by default. That means that effectively any object is `Decoratable`.
+### Decoratable scope
+
+`Magic::Decoratable` is mixed into `Object` by default. It means that effectively any object is _magically decoratable_.
 
 ### Decoration expansion
 
