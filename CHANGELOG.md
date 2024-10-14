@@ -4,6 +4,10 @@
 
 - For any method called on a decorated object, both its result and `yield`ed arguments get decorated.
 
+### Added
+
+- `Magic::Decorator::Base.undecorated` to exclude methods from being decorated automagically.
+
 
 ## [0.1.0] — 2024-10-13
 

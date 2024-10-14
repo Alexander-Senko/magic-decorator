@@ -53,6 +53,40 @@ module Magic
 						end
 					end
 				end
+
+				describe '.undecorated', :method do
+					it_behaves_like '#random_method' do
+						before { decorated.class.send :undecorated, method_name }
+
+						its([]) { is_expected.not_to be_decorated }
+
+						it_behaves_like 'with a block' do
+							it 'does not decorate yielded arguments' do
+								subject.call do |*args|
+									expect(args).to be_none &:decorated?
+								end
+							end
+						end
+					end
+
+					describe 'arguments' do
+						Object.class_eval do
+							def in?(collection) = collection.include? self
+						end
+
+						its([ :m1       ]) { is_expected.to eq   :m1     }
+						its([      'm2' ]) { is_expected.to eq      :m2  }
+						its([ :m1, 'm2' ]) { is_expected.to eq %i[m1 m2] }
+						its([[:m1, 'm2']]) { is_expected.to eq %i[m1 m2] }
+
+						it { expect { subject[:m1, 2] }.to raise_error TypeError }
+
+						its([ :m1       ]) { is_expected.to be_in        subject.receiver.instance_methods(false) }
+						its([      'm2' ]) { is_expected.to be_in        subject.receiver.instance_methods(false) }
+						its([ :m1, 'm2' ]) { is_expected.to be_intersect subject.receiver.instance_methods(false) }
+						its([[:m1, 'm2']]) { is_expected.to be_intersect subject.receiver.instance_methods(false) }
+					end
+				end
 			end
 		end
 	end

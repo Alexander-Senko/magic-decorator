@@ -75,6 +75,18 @@ For any method called on a decorated object, both its result and `yield`ed argum
     .decorated? # => true
 ```
 
+#### `undecorated` modifier
+
+`Magic::Decorator::Base.undecorated` can be used to exclude methods from being decorated automagically.
+
+```ruby
+class MyDecorator < Magic::Decorator::Base
+  undecorated %i[to_s inspect]
+  undecorated :raw_method
+  undecorated :m1, :m2
+end
+```
+
 ### Decorator class inference
 
 Decorators provide automatic class inference for any object based on its class name

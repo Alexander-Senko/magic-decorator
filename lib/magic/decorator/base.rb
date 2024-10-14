@@ -9,6 +9,21 @@ module Magic
 
 			class << self
 				def name_for(object_class) = "#{object_class}Decorator"
+
+				private
+
+				def undecorated method, *methods
+					return [ method, *methods ].map { undecorated _1 } if
+							methods.any?
+					return undecorated *method if
+							method.is_a? Array
+					raise TypeError, "#{method} is not a symbol nor a string" unless
+							method in Symbol | String
+
+					class_eval <<~RUBY, __FILE__, __LINE__ + 1
+						def #{method}(...) = __getobj__.#{method}(...)
+					RUBY
+				end
 			end
 
 			def decorated? = true

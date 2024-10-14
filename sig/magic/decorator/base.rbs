@@ -4,6 +4,12 @@ module Magic
 			extend Lookup
 
 			def decorated?: -> bool
+
+			private
+
+			def self.undecorated:      (interned)  -> Symbol
+					| (interned, interned, *interned)  -> Array[Symbol]
+					|                (Array[interned]) -> Array[Symbol]
 		end
 	end
 end
