@@ -42,6 +42,17 @@ module Magic
 				else
 					super
 				end.decorated
+			rescue NoMethodError => error
+				__raise__ error.class.new(
+						error.message.sub(self.class.name, __getobj__.class.name),
+						error.name,
+						error.args,
+				#		error.private_call?, # FIXME: not implemented in TruffleRuby
+
+						receiver: __getobj__
+				).tap {
+					_1.set_backtrace error.backtrace[2..] # FIXME: use `backtrace_locations` with Ruby 3.4+
+				}
 			end
 		end
 	end
