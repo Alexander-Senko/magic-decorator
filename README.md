@@ -66,7 +66,7 @@ One can test for the object is actually decorated with `#decorated?`.
 
 ### Decoration expansion
 
-For any method called on a decorated object, both its result and `yield`ed arguments get decorated.
+For almost any method called on a decorated object, both its result and `yield`ed arguments get decorated.
 
 ```ruby
 'with no decorator for String'.decorated.chars
@@ -74,6 +74,14 @@ For any method called on a decorated object, both its result and `yield`ed argum
 ['with a decorator for Array'].decorated.map(&:chars).first.grep(/\S/).group_by(&:upcase).transform_values(&:size).sort_by(&:last).reverse.first(5).map(&:first)
     .decorated? # => true
 ```
+
+#### Undecorated methods
+
+Some methods aren’t meant to be decorated though:
+
+- `deconstruct` & `deconstruct_keys` for _pattern matching_,
+- _converting_ methods: those starting with `to_`,
+- _system_ methods: those starting with `_`.
 
 #### `undecorated` modifier
 

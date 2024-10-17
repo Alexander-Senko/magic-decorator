@@ -2,7 +2,11 @@
 
 ### Changed
 
-- For any method called on a decorated object, both its result and `yield`ed arguments get decorated.
+- For almost any method called on a decorated object, both its result and `yield`ed arguments get decorated.
+  Some methods aren’t meant to be decorated though:
+	- `deconstruct` & `deconstruct_keys` for _pattern matching_,
+	- _converting_ methods: those starting with `to_`,
+	- _system_ methods: those starting with `_`.
 
 ### Added
 

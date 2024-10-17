@@ -48,7 +48,7 @@ module Magic
 					it_behaves_like 'with a block' do
 						it 'decorates yielded arguments' do
 							subject.call do |*args|
-								expect(args).to be_all &:decorated?
+								expect(args).to all be_decorated
 							end
 						end
 					end
@@ -63,7 +63,7 @@ module Magic
 						it_behaves_like 'with a block' do
 							it 'does not decorate yielded arguments' do
 								subject.call do |*args|
-									expect(args).to be_none &:decorated?
+									expect(args).not_to include be_decorated
 								end
 							end
 						end
@@ -85,6 +85,16 @@ module Magic
 						its([      'm2' ]) { is_expected.to be_in        subject.receiver.instance_methods(false) }
 						its([ :m1, 'm2' ]) { is_expected.to be_intersect subject.receiver.instance_methods(false) }
 						its([[:m1, 'm2']]) { is_expected.to be_intersect subject.receiver.instance_methods(false) }
+					end
+
+					describe 'by default' do
+						describe '#deconstruct' do
+							it { expect{ decorated => x, y }.not_to raise_error }
+						end
+
+						describe '#deconstruct_keys' do
+							it { expect { { x: rand }.decorated => x: }.not_to raise_error }
+						end
 					end
 				end
 			end

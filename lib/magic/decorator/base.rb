@@ -28,7 +28,15 @@ module Magic
 
 			def decorated? = true
 
-			def method_missing(...)
+			undecorated %i[
+					deconstruct
+					deconstruct_keys
+			]
+
+			def method_missing(method, ...)
+				return super if method.start_with? 'to_' # converter
+				return super if method.start_with? '_'   # system
+
 				if block_given?
 					super { |*args| yield *args.map(&:decorated) }
 				else
