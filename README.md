@@ -60,7 +60,33 @@ One can test for the object is actually decorated with `#decorated?`.
     .decorated? # => true
 ```
 
-## Magic
+### Extending decorator logic
+
+When extending `Magic::Decoratable`, one may override `#decorator_base` to be used for lookup.
+
+```ruby
+class Special::Decorator < Magic::Decorator::Base
+  def self.name_for object_class
+    "Special::#{object_class}Decorator"
+  end
+end
+
+module Special::Decoratable
+  include Magic::Decoratable
+
+  private
+
+  def decorator_base = Special::Decorator
+end
+
+class Special::Model
+  include Special::Decoratable
+end
+
+Special::Model.new.decorate # looks for Special::Decorator descendants
+```
+
+## 🪄 Magic
 
 ### Decoratable scope
 

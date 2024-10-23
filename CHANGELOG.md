@@ -1,3 +1,10 @@
+## [0.3.0] — UNRELEASED
+
+### Added
+
+- Improved extendability: one may override `Magic::Decoratable#decorator_base` to be used for lookups.
+
+
 ## [0.2.0] — 2024-10-17
 
 ### Changed
@@ -18,6 +25,7 @@
 	- enables _splat_ operator: `*decorated` ,
 	- enables _double-splat_ operator: `**decorated`,
 	- enumerating methods yield decorated items.
+
 
 ## [0.1.0] — 2024-10-13
 
