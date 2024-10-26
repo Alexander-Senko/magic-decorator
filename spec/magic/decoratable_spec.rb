@@ -14,6 +14,12 @@ module Magic
 
 		after { Decorator::Base.clear_memery_cache! }
 
+		describe '.classes', :method do
+			its([]) { is_expected.to be_a Array }
+			its([]) { is_expected.to all be_a Class }
+			its([]) { is_expected.to all match(...described_class) }
+		end
+
 		shared_context :decoratable do
 			before { stub_const 'ArrayDecorator', decorator_class }
 		end

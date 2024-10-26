@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
 	spec.required_ruby_version = '~> 3.2'
 
 	spec.add_dependency 'magic-lookup'
+	spec.add_dependency 'activesupport'
 end

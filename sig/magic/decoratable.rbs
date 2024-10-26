@@ -1,5 +1,7 @@
 module Magic
 	module Decoratable
+		def self.classes: () -> Array[Class]
+
 		def decorate:  () ->  Decorator?
 		def decorate!: () ->  Decorator
 		def decorated: () -> (Decorator | self)

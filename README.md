@@ -92,6 +92,8 @@ Special::Model.new.decorate # looks for Special::Decorator descendants
 
 `Magic::Decoratable` is mixed into `Object` by default. It means that effectively any object is _magically decoratable_.
 
+One can use `Magic::Decoratable.classes` to see all the decoratable classes.
+
 ### Decoration expansion
 
 For almost any method called on a decorated object, both its result and `yield`ed arguments get decorated.
