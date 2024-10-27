@@ -5,7 +5,8 @@ require 'delegate'
 module Magic
 	module Decorator
 		class Base < SimpleDelegator
-			extend Lookup
+			extend  Lookup
+			include Decoratable
 
 			class << self
 				def name_for(object_class) = "#{object_class}Decorator"

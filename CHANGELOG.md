@@ -5,6 +5,10 @@
 - Improved extendability: one may override `Magic::Decoratable#decorator_base` to be used for lookups.
 - `Magic::Decoratable.classes` for all the decoratables.
 
+### Fixed
+
+- Failures on double decoration attempts.
+
 
 ## [0.2.0] — 2024-10-17
 

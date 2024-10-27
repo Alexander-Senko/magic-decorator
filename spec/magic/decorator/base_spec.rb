@@ -110,6 +110,12 @@ module Magic
 					end
 				end
 			end
+
+			context 'when double-decorated' do
+				subject { decorated.decorate }
+
+				it { is_expected.to be_nil }
+			end
 		end
 	end
 end
