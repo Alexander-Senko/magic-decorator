@@ -34,6 +34,8 @@ module Magic
 					deconstruct_keys
 			]
 
+			private
+
 			def method_missing(method, ...)
 				return super if method.start_with? 'to_' # converter
 				return super if method.start_with? '_'   # system
