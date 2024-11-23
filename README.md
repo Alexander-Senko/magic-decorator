@@ -165,6 +165,41 @@ It automagically decorates all its decoratable items.
 - enables _double-splat_ operator: `**decorated`,
 - enumerating methods yield decorated items.
 
+## Overriding the magic
+
+When one needs more complicated behavior than the default one or feels like [_explicit is better than implicit_](
+	https://peps.python.org/pep-0020/#the-zen-of-python
+).
+
+### Decorator class inference
+
+One may override `#decorator` for any decoratable class, to be used instead of Magic Lookup.
+
+- That could be as straightforward as a constant:
+
+	```ruby
+	class Guest
+	  private
+	
+	  def decorator = UserDecorator
+	end
+	
+	guest.decorate # => instance of UserDecorator
+	```
+
+- Or, that could be virtually any logic:
+
+	```ruby
+	class User
+	  private
+	
+	  def decorator = admin? ? AdminDecorator : super
+	end
+	
+	user.decorate  # => instance of UserDecorator
+	admin.decorate # => instance of AdminDecorator
+	```
+
 ## Testing decorators
 
 Testing a decorator is much like testing any other class.

@@ -4,6 +4,7 @@ This release marks the gem to be stable enough.
 
 ### Documentation
 
+- Added a section about overriding the defaults.
 - Added a section about testing.
 
 
