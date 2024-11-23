@@ -1,3 +1,12 @@
+## [1.0.0] — UNRELEASED
+
+This release marks the gem to be stable enough.
+
+### Documentation
+
+- Added a section about testing.
+
+
 ## [0.3.0] — 2024-10-27
 
 ### Added

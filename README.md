@@ -165,6 +165,16 @@ It automagically decorates all its decoratable items.
 - enables _double-splat_ operator: `**decorated`,
 - enumerating methods yield decorated items.
 
+## Testing decorators
+
+Testing a decorator is much like testing any other class.
+
+To test whether an object is decorated one can use `#decorated?` method.
+
+> [!NOTE]
+> A decorated object equals the original one (`object.decorated == object`).
+> Thus, any existing tests shouldn’t break when the objects being tested get decorated.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

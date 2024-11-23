@@ -2,6 +2,6 @@
 
 module Magic
 	module Decorator
-		VERSION = '0.3.0'
+		VERSION = '1.0.0.alpha'
 	end
 end
