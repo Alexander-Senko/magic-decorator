@@ -2,14 +2,14 @@
 
 module Magic
 	RSpec.describe Decorator do
-		describe '.for', :method do
+		describe '.for' do
 			it_behaves_like :delegated,
-					to: Decorator::Base, with: Array
+					to: Decorator::Base, with: Class.new
 		end
 
-		describe '.name_for', :method do
+		describe '.name_for' do
 			it_behaves_like :delegated,
-					to: Decorator::Base, with: Array
+					to: Decorator::Base, with: Class.new
 		end
 	end
 end

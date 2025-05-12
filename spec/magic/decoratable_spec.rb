@@ -14,10 +14,10 @@ module Magic
 
 		after { Decorator::Base.clear_memery_cache! }
 
-		describe '.classes', :method do
-			its([]) { is_expected.to be_a Array }
-			its([]) { is_expected.to all be_a Class }
-			its([]) { is_expected.to all match(...described_class) }
+		describe '.classes' do
+			its_result { is_expected.to be_a Array }
+			its_result { is_expected.to all be_a Class }
+			its_result { is_expected.to all match(...described_class) }
 		end
 
 		shared_context :decoratable do
@@ -25,19 +25,19 @@ module Magic
 		end
 
 		shared_examples 'returns decorated object' do
-			its([]) { is_expected.to eq object }
-			its([]) { is_expected.to be_decorated }
+			its_result { is_expected.to eq object }
+			its_result { is_expected.to be_decorated }
 		end
 
-		describe '#decorate', :method do
+		describe '#decorate' do
 			it_behaves_like :decoratable do
 				include_examples 'returns decorated object'
 			end
 
-			its([]) { is_expected.to be_nil }
+			its_result { is_expected.to be_nil }
 		end
 
-		describe '#decorate!', :method do
+		describe '#decorate!' do
 			it_behaves_like :decoratable do
 				include_examples 'returns decorated object'
 			end
@@ -45,23 +45,23 @@ module Magic
 			it { expect { subject[] }.to raise_error Lookup::Error }
 		end
 
-		describe '#decorated', :method do
+		describe '#decorated' do
 			it_behaves_like :decoratable do
 				include_examples 'returns decorated object'
 			end
 
-			its([]) { is_expected.to     eq object }
-			its([]) { is_expected.not_to be_decorated }
+			its_result { is_expected.to     eq object }
+			its_result { is_expected.not_to be_decorated }
 		end
 
-		describe '#decorated?', :method do
+		describe '#decorated?' do
 			let(:object) { super().decorated }
 
 			it_behaves_like :decoratable do
-				its([]) { is_expected.to be true }
+				its_result { is_expected.to be true }
 			end
 
-			its([]) { is_expected.to be false }
+			its_result { is_expected.to be false }
 		end
 	end
 end

@@ -12,11 +12,11 @@ module Magic
 
 			describe 'method decoration' do
 				shared_context '#random_method' do
-					include_context :method
+					class_eval &RSpec::Method::ExampleGroup.instance_variable_get(:@_included_block) # HACK: waiting for public API
 
 					let(:arguments) { random_array }
-					let(:result) { random_array }
-					let(:yields) { 2.times.map { random_array } }
+					let(:result)    { random_array }
+					let(:yields)    { 2.times.map { random_array } }
 
 					before { allow(object).to receive(method_name).and_return result }
 
@@ -40,7 +40,7 @@ module Magic
 				end
 
 				it_behaves_like '#random_method' do
-					its([]) { is_expected.to be_decorated }
+					its_result { is_expected.to be_decorated }
 
 					it_behaves_like 'with a block' do
 						it 'decorates yielded arguments' do
@@ -51,13 +51,13 @@ module Magic
 					end
 				end
 
-				describe '#missing_method', :method do
+				describe '#missing_method' do
 					let(:arguments) { random_array }
 
 					it 'masquerades exceptions' do
 						expect { subject.call *arguments }.to raise_error(NoMethodError) { |error|
 							expect(error).to have_attributes(
-									message: /undefined method ['`]#{method_name}' for .*Array/, # FIXME: use Ruby 3.4+ version
+									message:  /undefined method ['`]#{method_name}' for .*Array/, # FIXME: use Ruby 3.4+ version
 									receiver: object,
 									name:     method_name,
 									args:     arguments,
@@ -66,11 +66,11 @@ module Magic
 					end
 				end
 
-				describe '.undecorated', :method do
+				describe '.undecorated' do
 					it_behaves_like '#random_method' do
 						before { decorated.class.send :undecorated, method_name }
 
-						its([]) { is_expected.not_to be_decorated }
+						its_result { is_expected.not_to be_decorated }
 
 						it_behaves_like 'with a block' do
 							it 'does not decorate yielded arguments' do
@@ -86,17 +86,19 @@ module Magic
 							def in?(collection) = collection.include? self
 						end
 
-						its([ :m1 ]) { is_expected.to eq :m1 }
-						its([ 'm2' ]) { is_expected.to eq :m2 }
-						its([ :m1, 'm2' ]) { is_expected.to eq %i[m1 m2] }
-						its([ [ :m1, 'm2' ] ]) { is_expected.to eq %i[m1 m2] }
+						its_result(  :m1        ) { is_expected.to eq   :m1     }
+						its_result(       'm2'  ) { is_expected.to eq      :m2  }
+						its_result(  :m1, 'm2'  ) { is_expected.to eq %i[m1 m2] }
+						its_result([ :m1, 'm2' ]) { is_expected.to eq %i[m1 m2] }
 
 						it { expect { subject[:m1, 2] }.to raise_error TypeError }
 
-						its([ :m1 ]) { is_expected.to be_in subject.receiver.instance_methods(false) }
-						its([ 'm2' ]) { is_expected.to be_in subject.receiver.instance_methods(false) }
-						its([ :m1, 'm2' ]) { is_expected.to be_intersect subject.receiver.instance_methods(false) }
-						its([ [ :m1, 'm2' ] ]) { is_expected.to be_intersect subject.receiver.instance_methods(false) }
+						let(:instance_methods) { receiver.instance_methods false }
+
+						its_result(  :m1        ) { is_expected.to be_in        instance_methods }
+						its_result(       'm2'  ) { is_expected.to be_in        instance_methods }
+						its_result(  :m1, 'm2'  ) { is_expected.to be_intersect instance_methods }
+						its_result([ :m1, 'm2' ]) { is_expected.to be_intersect instance_methods }
 					end
 
 					describe 'by default' do
