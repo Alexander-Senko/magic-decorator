@@ -12,6 +12,8 @@ on:
       - Gemfile*
       - '*.gemspec'
       - .github/workflows/ci.yml
+      - .rspec*
+      - .rubocop*
       - '!**/version.rb'
 
   pull_request:
@@ -21,7 +23,23 @@ on:
       - '**/version.rb'
 
 jobs:
-  build:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: head
+          bundler-cache: true
+
+      - name: Lint code for consistent style
+        run: bin/rubocop -f github
+        continue-on-error: true
+
+  test:
     runs-on: ubuntu-latest
     name: Ruby ${{ matrix.ruby }}
     strategy:
@@ -35,14 +53,23 @@ jobs:
           - truffleruby-head
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - uses: paambaati/codeclimate-action@v8
-      env:
-        CC_TEST_REPORTER_ID: 708f82be53c67e58681e5ed21eec22376a4f9320e84cf9a86297d152a70f8bd5
-      with:
-        coverageCommand: bundle exec rake
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version:  ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Run specs with code coverage
+        uses: paambaati/codeclimate-action@v8
+        env:
+          CC_TEST_REPORTER_ID: 708f82be53c67e58681e5ed21eec22376a4f9320e84cf9a86297d152a70f8bd5
+        with:
+          coverageCommand: bundle exec rake
+        continue-on-error: ${{ matrix.allow-fail }}
+        id:                test
+
+      - name: Test ${{ steps.test.outcome }}
+        run:  ruby -v
