@@ -1,3 +1,12 @@
+## [1.1.0] — UNRELEASED
+
+Moved to Magic Lookup 1.0.
+
+### Changed
+
+- Extracted implementation of `Magic::Decoratable.classes` to `Magic::Lookup::Scope`.
+
+
 ## [1.0.2] — 2026-05-05
 
 Works with Ruby 4+.

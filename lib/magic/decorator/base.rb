@@ -11,6 +11,9 @@ module Magic
 			class << self
 				def name_for(object_class) = "#{object_class}Decorator"
 
+				def to_s = super
+						.delete_suffix('::Base')
+
 				private
 
 				def undecorated method, *methods

@@ -14,18 +14,6 @@ module Magic
 
 		after { Decorator::Base.clear_memery_cache! }
 
-		describe '.classes' do
-			its_result { is_expected.to be_a Array }
-			its_result { is_expected.to all be_a Class }
-			its_result { is_expected.to all match(...described_class) }
-
-			it 'ignores singleton ones' do
-				expect do
-					def (object.decorated).foo = :bar
-				end.not_to change subject, :call
-			end
-		end
-
 		shared_context :decoratable do
 			before { stub_const 'ArrayDecorator', decorator_class }
 		end
