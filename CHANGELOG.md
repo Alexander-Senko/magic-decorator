@@ -1,3 +1,10 @@
+## [1.0.1] — 2025-05-13
+
+### Fixed
+
+- `Magic::Decoratable.classes` shouldn’t include singleton ones.
+
+
 ## [1.0.0] — 2024-11-23
 
 This release marks the gem to be stable enough.

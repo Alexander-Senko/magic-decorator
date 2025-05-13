@@ -10,6 +10,7 @@ module Magic
 			def classes
 				ObjectSpace.each_object(Class)
 						.select { _1 < self }
+						.reject(&:singleton_class?)
 			end
 		end
 
