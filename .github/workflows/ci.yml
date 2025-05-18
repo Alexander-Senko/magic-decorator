@@ -51,7 +51,10 @@ jobs:
           - 3.2
 
           - truffleruby
-          - truffleruby-head
+
+        include:
+          # TruffleRuby
+          - { ruby: 'truffleruby-head', allow-fail: true }
 
     steps:
       - name: Checkout code
