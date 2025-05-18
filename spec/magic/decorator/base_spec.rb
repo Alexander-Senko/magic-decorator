@@ -12,8 +12,6 @@ module Magic
 
 			describe 'method decoration' do
 				shared_context '#random_method' do
-					class_eval &RSpec::Method::ExampleGroup.instance_variable_get(:@_included_block) # HACK: waiting for public API
-
 					let(:arguments) { random_array }
 					let(:result)    { random_array }
 					let(:yields)    { 2.times.map { random_array } }
