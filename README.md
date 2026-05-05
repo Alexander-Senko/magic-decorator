@@ -3,11 +3,15 @@
 ![GitHub Actions Workflow Status](
 	https://img.shields.io/github/actions/workflow/status/Alexander-Senko/magic-decorator/ci.yml
 )
-![Code Climate maintainability](
-	https://img.shields.io/codeclimate/maintainability-percentage/Alexander-Senko/magic-decorator
+[![Maintainability](
+	https://qlty.sh/gh/Alexander-Senko/projects/magic-decorator/maintainability.svg
+)](
+	https://qlty.sh/gh/Alexander-Senko/projects/magic-decorator
 )
-![Code Climate coverage](
-	https://img.shields.io/codeclimate/coverage/Alexander-Senko/magic-decorator
+[![Code Coverage](
+	https://qlty.sh/gh/Alexander-Senko/projects/magic-decorator/coverage.svg
+)](
+	https://qlty.sh/gh/Alexander-Senko/projects/magic-decorator
 )
 
 A bit of history:
