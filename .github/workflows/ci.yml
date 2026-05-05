@@ -53,10 +53,9 @@ jobs:
           - 3.3
           - 3.2
 
-          - truffleruby
-
         include:
           # TruffleRuby
+          - { ruby: 'truffleruby',      allow-fail: true }
           - { ruby: 'truffleruby-head', allow-fail: true }
 
     steps:
