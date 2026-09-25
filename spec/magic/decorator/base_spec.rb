@@ -55,7 +55,7 @@ module Magic
 					it 'masquerades exceptions' do
 						expect { subject.call *arguments }.to raise_error(NoMethodError) { |error|
 							expect(error).to have_attributes(
-									message:  /undefined method ['`]#{method_name}' for .*Array/, # FIXME: use Ruby 3.4+ version
+									message:  /undefined method '#{method_name}' for .*Array/,
 									receiver: object,
 									name:     method_name,
 									args:     arguments,

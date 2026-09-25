@@ -17,11 +17,11 @@ module Magic
 				private
 
 				def undecorated method, *methods
-					return [ method, *methods ].map { undecorated _1 } if
+					return [ method, *methods ].map { undecorated it } if
 							methods.any?
 					return undecorated *method if
 							method.is_a? Array
-					raise TypeError, "#{method} is not a symbol nor a string" unless
+					raise TypeError, "#{method} is not a symbol, nor a string" unless
 							method in Symbol | String
 
 					class_eval <<~RUBY, __FILE__, __LINE__ + 1
@@ -57,7 +57,7 @@ module Magic
 
 						receiver: __getobj__
 				).tap {
-					_1.set_backtrace error.backtrace[2..] # FIXME: use `backtrace_locations` with Ruby 3.4+
+					it.set_backtrace error.backtrace_locations[2...]
 				}
 			end
 		end
