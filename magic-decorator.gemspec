@@ -6,9 +6,9 @@ require_relative 'lib/magic/decorator/authors'
 Gem::Specification.new do |spec|
 	spec.name        = 'magic-decorator'
 	spec.version     = Magic::Decorator::VERSION
-	spec.authors     = Magic::Decorator::AUTHORS.names
-	spec.email       = Magic::Decorator::AUTHORS.emails
-	spec.homepage    = "#{Magic::Decorator::AUTHORS.github_url}/#{spec.name}"
+	spec.authors     = Magic::Decorator::Author.names
+	spec.email       = Magic::Decorator::Author.emails
+	spec.homepage    = "#{Magic::Decorator::Author.github_url}/#{spec.name}"
 	spec.summary     = 'Decorators with some internal magic'
 	spec.description = 'SimpleDelegator on steroids: automatic delegation, decorator class inference, etc.'
 	spec.license     = 'MIT'
