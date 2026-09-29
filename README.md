@@ -17,11 +17,11 @@
 A bit of history:
 this gem was inspired by digging deeper into [Draper](https://github.com/drapergem/draper) with an eye on a refactoring.
 
-It implements a general decorator logic. It’s not meant to be a _presenter_.
+It implements a general decorator logic. It is not meant to be a _presenter_.
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Install the gem and add to the application’s Gemfile by executing:
 
     $ bundle add magic-decorator
 
@@ -69,7 +69,7 @@ One can test for the object is actually decorated with `#decorated?`.
 
 ### Extending decorator logic
 
-When extending `Magic::Decoratable`, one may override `#decorator_base` to be used for lookup.
+When extending `Magic::Decoratable`, one may override `#decorator_base` to be used for lookups.
 
 ```ruby
 class Special::Decorator < Magic::Decorator::Base
@@ -230,4 +230,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Magic Decorator project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/Alexander-Senko/magic-decorator/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the Magic Decorator project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/Alexander-Senko/magic-decorator/blob/main/CODE_OF_CONDUCT.md).

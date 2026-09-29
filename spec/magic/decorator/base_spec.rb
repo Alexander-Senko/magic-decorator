@@ -5,7 +5,7 @@ module Magic
 		RSpec.describe Base do
 			subject { decorated }
 
-			let(:object) { random_array }
+			let(:object)    { random_array }
 			let(:decorated) { object.decorate! }
 
 			def random_array = 2.times.map { rand }
@@ -18,9 +18,9 @@ module Magic
 
 					before { allow(object).to receive(method_name).and_return result }
 
-					shared_context('with a block') {
+					shared_context 'with a block' do
 						before { allow(object).to receive(method_name).and_yield *yields }
-					}
+					end
 
 					it 'forwards arguments' do
 						subject[*arguments]

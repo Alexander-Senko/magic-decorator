@@ -38,7 +38,8 @@ This release marks the gem to be stable enough.
 ### Added
 
 - Improved extendability: one may override `Magic::Decoratable#decorator_base` to be used for lookups.
-- `Magic::Decoratable.classes` for all the decoratables.
+- `Magic::Decoratable.classes`
+  for all the decoratables.
 
 ### Fixed
 
@@ -57,11 +58,13 @@ This release marks the gem to be stable enough.
 
 ### Added
 
-- `Magic::Decorator::Base.undecorated` to exclude methods from being decorated automagically.
+- `Magic::Decorator::Base.undecorated`
+  to exclude methods from being decorated automagically.
 
 #### Default decorators
 
-- `EnumerableDecorator` to decorate `Enumerable`s.
+- `EnumerableDecorator`
+  to decorate `Enumerable`s.
 	- enables _splat_ operator: `*decorated` ,
 	- enables _double-splat_ operator: `**decorated`,
 	- enumerating methods yield decorated items.
@@ -71,8 +74,10 @@ This release marks the gem to be stable enough.
 
 ### Added
 
-- `Magic::Decorator::Base` — a basic decorator class.
-- `Magic::Decoratable` to be included in decoratable classes.
+- `Magic::Decorator::Base`
+  — a basic decorator class.
+- `Magic::Decoratable`
+  to be included in decoratable classes.
 	- `#decorate`,
 	- `#decorate!`,
 	- `#decorated`,
