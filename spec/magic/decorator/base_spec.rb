@@ -49,6 +49,25 @@ module Magic
 					end
 				end
 
+				Array # object class
+						.methods
+						.grep(/^to_/) # converters
+						.each do
+							describe "##{it}" do
+								its_result { is_expected.not_to be_decorated }
+							end
+						end
+
+				Array # object class
+						.methods
+						.grep(/^_/) # system
+						.select { Array.instance_method(it).arity == 0 }
+						.each do
+							describe "##{it}" do
+								its_result { is_expected.not_to be_decorated }
+							end
+						end
+
 				describe '#missing_method' do
 					let(:arguments) { random_array }
 
