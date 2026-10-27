@@ -1,3 +1,10 @@
+## [1.1.1] — 2026-10-27
+
+### Fixed
+
+- RBS for `Magic::Decoratable`: decoration methods return `Magic::Decorator::Base` descendants.
+
+
 ## [1.1.0] — 2026-09-29
 
 Moved to Magic Lookup 1.0.

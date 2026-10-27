@@ -1,8 +1,8 @@
 module Magic
 	module Decoratable
-		def decorate:  () ->  Decorator?
-		def decorate!: () ->  Decorator
-		def decorated: () -> (Decorator | self)
+		def decorate:  () ->  Decorator::Base?
+		def decorate!: () ->  Decorator::Base
+		def decorated: () -> (Decorator::Base | self)
 
 		def decorated?: () -> bool
 
