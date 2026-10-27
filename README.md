@@ -93,6 +93,38 @@ end
 Special::Model.new.decorate # looks for Special::Decorator descendants
 ```
 
+### Decorating methods
+
+`Module#decorated_method` decorates the return value of one or more existing instance methods by calling `#decorated` on it.
+It accepts method names as symbols or strings, either separately or in one array, and returns those names as `Module#private` does:
+
+```ruby
+class Account
+  decorated_method attr_reader :owner
+  decorated_method def address = owner.address
+  decorated_method :method_missing
+end
+```
+
+Calling it without arguments decorates instance methods defined afterward:
+
+```ruby
+class Account
+  decorated_method
+
+  attr_reader :owner
+  def address = owner.address
+end
+```
+
+Method arguments, keyword arguments, blocks, and visibility are preserved.
+
+> [!IMPORTANT]
+> This core class extension is not loaded by default and should be required explicitly if needed:
+> ```ruby
+> require 'magic/decorator/core_ext/module'
+> ```
+
 ## 🪄 Magic
 
 ### Decoratable scope

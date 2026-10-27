@@ -1,0 +1,10 @@
+class Module
+	def decorated_method: (interned) -> interned
+			| (interned, interned, *interned) -> Array[interned]
+			| (Array[interned])               -> Array[interned]
+			| -> nil
+
+	private
+
+	def decorated_methods_module: -> Module
+end

@@ -1,3 +1,11 @@
+## [1.2.0] — UNRELEASED
+
+### Added
+
+- `Module#decorated_method`
+	to decorate method return values.
+
+
 ## [1.1.1] — 2026-10-27
 
 ### Fixed
