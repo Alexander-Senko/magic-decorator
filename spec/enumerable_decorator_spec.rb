@@ -21,7 +21,7 @@ RSpec.describe EnumerableDecorator do
 				its_result { is_expected.not_to be_decorated }
 				its_result { is_expected.to include be_decorated }
 
-				it 'decorates every yielded argument' do
+				it 'decorates every yielded argument' do # rubocop:disable RSpec/MultipleExpectations
 					{ [1] => [2] }.decorated
 							.each do |key, value|
 								expect(key  ).to be_decorated

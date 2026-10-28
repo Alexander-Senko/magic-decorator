@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+# Enhanced table view for expressions
+#
+# rubocop:disable Layout/SpaceBeforeFirstArg
+#
+# Implicit example grouping
+#
+# rubocop:disable RSpec/LetBeforeExamples
+
 module Magic
 	module Decorator
 		RSpec.describe Base do
@@ -71,7 +79,7 @@ module Magic
 				describe '#missing_method' do
 					let(:arguments) { random_array }
 
-					it 'masquerades exceptions' do
+					it 'masquerades exceptions' do # rubocop:disable RSpec/MultipleExpectations
 						expect { subject.call *arguments }.to raise_error(NoMethodError) { |error|
 							expect(error).to have_attributes(
 									message:  /undefined method '#{method_name}' for .*Array/,
