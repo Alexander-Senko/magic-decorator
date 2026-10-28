@@ -4,6 +4,18 @@ require 'delegate'
 
 module Magic
 	module Decorator
+		# = Magic Decorator
+		#
+		# Any decorator should inherit `Magic::Decorator::Base`.
+		# It further inherits from `SimpleDelegator` and behaves like that.
+		#
+		# == Decorator class inference
+		#
+		# Decorators provide automatic class inference for any class based
+		# on its name powered by Magic Lookup.
+		# For example, `MyObject.new` looks for `MyObjectDecorator` first.
+		# If not found, it looks for decorators of its ancestor classes,
+		# up to `ObjectDecorator`.
 		class Base < SimpleDelegator
 			extend  Lookup
 			include Decoratable

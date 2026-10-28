@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module Magic
+	# = Decoratable object
+	#
+	# This module allows a descendant to be decorated. Decorator class is
+	# being inferred automatically via Magic Lookup.
 	module Decoratable
 		include Lookup::Scope
 

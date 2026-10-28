@@ -4,11 +4,15 @@ require 'magic/lookup'
 
 require_relative 'decorator/version'
 
-module Magic
+module Magic # :nodoc:
 	autoload :Decoratable, 'magic/decoratable'
 
 	Object.include Decoratable
 
+	# = Magic Decorator
+	#
+	# It implements a general decorator logic. It is not meant to be a
+	# presenter.
 	module Decorator
 		autoload :Base, 'magic/decorator/base'
 
