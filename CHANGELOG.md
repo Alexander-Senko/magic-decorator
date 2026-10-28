@@ -1,4 +1,4 @@
-## [1.2.0] — UNRELEASED
+## [1.2.0] — 2026-10-28
 
 ### Added
 
@@ -54,7 +54,7 @@ This release marks the gem to be stable enough.
 
 - Improved extendability: one may override `Magic::Decoratable#decorator_base` to be used for lookups.
 - `Magic::Decoratable.classes`
-  for all the decoratables.
+	for all the decoratables.
 
 ### Fixed
 
@@ -66,7 +66,7 @@ This release marks the gem to be stable enough.
 ### Changed
 
 - For almost any method called on a decorated object, both its result and `yield`ed arguments get decorated.
-  Some methods aren’t meant to be decorated though:
+	Some methods aren’t meant to be decorated though:
 	- `deconstruct` & `deconstruct_keys` for _pattern matching_,
 	- _converting_ methods: those starting with `to_`,
 	- _system_ methods: those starting with `_`.
@@ -74,12 +74,12 @@ This release marks the gem to be stable enough.
 ### Added
 
 - `Magic::Decorator::Base.undecorated`
-  to exclude methods from being decorated automagically.
+	to exclude methods from being decorated automagically.
 
 #### Default decorators
 
 - `EnumerableDecorator`
-  to decorate `Enumerable`s.
+	to decorate `Enumerable`s.
 	- enables _splat_ operator: `*decorated` ,
 	- enables _double-splat_ operator: `**decorated`,
 	- enumerating methods yield decorated items.
@@ -90,9 +90,9 @@ This release marks the gem to be stable enough.
 ### Added
 
 - `Magic::Decorator::Base`
-  — a basic decorator class.
+	— a basic decorator class.
 - `Magic::Decoratable`
-  to be included in decoratable classes.
+	to be included in decoratable classes.
 	- `#decorate`,
 	- `#decorate!`,
 	- `#decorated`,
